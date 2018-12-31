@@ -1,0 +1,255 @@
+### exported: Sat Dec 29 18:42:38 2018
+### from:     Arnold 5.2.2.0 [30b8ba14] linux clang-5.0.0 oiio-2.0.1 osl-1.10.1 vdb-4.0.0 clm-1.0.3.513 rlm-12.4.2 2018/12/04 21:54:11
+### host app: MtoA 3.1.2 cd2a574d (master) Maya 2017
+### user: cactus
+### render_layer: defaultRenderLayer
+
+
+
+options
+{
+ AA_samples 3
+ AA_samples_max 8
+ outputs "RGBA RGBA defaultArnoldFilter@gaussian_filter defaultArnoldDriver@driver_exr.RGBA"
+ xres 960
+ yres 540
+ texture_per_file_stats on
+ texture_searchpath "/home/cactus/maya/projects/default/sourceimages"
+ texture_automip off
+ camera "perspShape"
+ frame 1
+ procedural_searchpath "/home/cactus/maya/projects/default/"
+ GI_diffuse_depth 1
+ GI_specular_depth 1
+ GI_transmission_depth 8
+ declare render_layer constant STRING
+ render_layer "defaultRenderLayer"
+}
+
+gaussian_filter
+{
+ name defaultArnoldFilter@gaussian_filter
+}
+
+driver_exr
+{
+ name defaultArnoldDriver@driver_exr.RGBA
+ filename "/home/cactus/maya/projects/default/images/untitled.exr"
+ color_space ""
+}
+
+polymesh
+{
+ name pCubeShape1
+ visibility 255
+ sidedness 255
+ matrix
+ 1 0 0 0
+ 0 1 0 0
+ 0 0 1 0
+ 0 0 0 1
+ shader "aiUtility1"
+ id 1171623953
+ nsides 6 1 UINT
+4 4 4 4 4 4
+ vidxs 24 1 b85UINT
+B$ZuK*%<ho2%s\>:$$-?2$vMr4%<MT0
+ nidxs 24 1 b85UINT
+B$v2N*&9nA:'RU4J(k<'Z*.woj+G^c%
+ uvidxs 24 1 b85UINT
+B$ZuK*%<ho2%s\>:&UObB$w/J=(3BP?
+ vlist 8 1 b85VECTOR
+b0o:AaDq998lXd69%)^kaDq998lXd6b0o:A89+]c8lXd69%)^k89+]c8lXd6b0o:A89+]caxI?a9%)^k89+]caxI?ab0o:AaDq99axI?a9%)^kaDq99axI?a
+ nlist 24 1 b85VECTOR
+zzyzzyzzyzzyzyzzyzzyzzy!$$$$$$$$$'aRT=dzzaRT=dzzaRT=dzzaRT=dzaRT=dzzaRT=dzzaRT=dzzaRT=dz8Fcb8zz8Fcb8zz8Fcb8zz8Fcb8zzaRT=czzaRT=czzaRT=czzaRT=czz
+ uvlist 14 1 b85VECTOR2
+82:0xz8<Nt.z82:0x8+HY88<Nt.8+HY882:0x89+]c8<Nt.89+]c82:0x8?r5N8<Nt.8?r5N82:0xy8<Nt.y8C@Knz8C@Kn8+HY87reTbz7reTb8+HY8
+ smoothing on
+ step_size 0
+ volume_padding 0
+ declare maya_full_name constant STRING
+ maya_full_name "|pCube1|pCubeShape1"
+}
+
+utility
+{
+ name aiUtility1
+ shade_mode "flat"
+ color.r aiOslShader1
+ color.g aiOslShader1
+ color.b aiOslShader1
+}
+
+osl
+{
+ name aiOslShader1
+ code "    float smin2(float a, float b, float r)
+    {
+    float f = max(0., 1. - abs(b - a)/r);
+    return min(a, b) - r*.25*f*f;
+    }
+
+
+
+    vector hash( vector x )
+    {
+        vector a = vector( dot(x,vector(127.1, 311.7, 74.7)),
+                        dot(x,vector(269.5, 183.3, 246.1)),
+                        dot(x,vector(113.5, 271.9, 124.6)) );
+        
+        vector result = sin(a)*43758.5453123;
+        return result - floor(result);
+    }
+
+
+
+    float voronoi_smoothed(vector x, float smoothing){
+
+
+        vector p = floor(x);
+        vector f = x - floor(x);
+        vector h = step(0.5, f) - 2.0;
+        p += h; f -= h;
+        
+        // Voronoi cell ID containing the minimum offset point distance. The nearest
+        // edge will be one of the cells edges.
+        vector minCellID = vector(0); // Redundant initialization, but I've done it anyway.
+
+
+        // First pass: Regular Voronoi.
+        vector mo;
+        
+        // Minimum distance, \"smooth\" distance to the nearest cell edge, regular
+        // distance to the nearest cell edge, and a line distance place holder.
+        float md = 8.0, lMd = 8.0, lnDist, d;
+        
+        for( int k=0; k<=3; k++ )
+        for( int j=0; j<=3; j++ )
+        for( int i=0; i<=3; i++ )
+        {
+            vector b = vector(float(i), float(j), float(k));
+            vector r = vector( b ) - f + hash( p + b );
+            
+            // Determine the distance metric to the point.
+            d = dot(r, r);
+            if( d<md ){ // Perform updates, if applicable.    
+                md = d;  // Update the minimum distance.
+                // Keep note of the position of the nearest cell point - with respect
+                // to \"p,\" of course. It will be used in the second pass.
+                mo = r; 
+                //cellID = h + p; // For cell coloring.
+
+
+                // zeno: how should mincellid be used??
+                minCellID = b; // Record the minimum distance cell ID.
+            }
+        }
+        
+        // Second pass: Point to nearest cell-edge distance.
+        //
+        // With the ID of the cell containing the closest point, do a sweep of all the
+        // surrounding cell edges to determine the closest one. You do that by applying
+        // a standard distance to a line formula.
+        for( int k=0; k<=3; k++ )
+        for( int j=0; j<=3; j++ )
+        for( int i=0; i<=3; i++ )
+        {
+            vector b = vector(float(i), float(j), float(k));
+        
+            // Determine the offset hexagonal point in relation to the minimum cell offset.
+            //vec2 r = hexPt(pH + gridpoint + minCellID) - x - mo; // Note the \"-mo\" to save some operations. 
+            vector r = vector( b ) - f + hash( p + b ) - mo;
+            
+            // Skip the same cell.
+            if(dot(r, r)>.00001){
+                
+                // This tiny line is the crux of the whole example, believe it or not. Basically, it's
+                // a bit of simple trigonometry to determine the distance from the cell point to the
+                // cell border line. See IQ's article (link above) for a visual representation.            
+                lnDist = dot(mo + r*.5, normalize(r));
+                
+                // Abje's addition. Border distance using a smooth minimum. Insightful, and simple.
+                //
+                // On a side note, IQ reminded me that the order in which the polynomial-based smooth
+                // minimum is applied effects the result. However, the exponentional-based smooth
+                // minimum is associative and commutative, so is more correct. In this particular case, 
+                // the effects appear to be negligible, so I'm sticking with the cheaper polynomial-based
+                // smooth minimum, but it's something you should keep in mind. By the way, feel free to 
+                // uncomment the exponential one and try it out to see if you notice a difference.
+                //
+                // Polynomial-based smooth minimum. The last factor controls the roundness of the 
+                // edge joins. Zero gives you sharp joins, and something like \".25\" will produce a
+                // more rounded look. Tomkh noticed that a variable smoothing factor - based on the
+                // line distance - produces continuous isolines.
+                lMd = smin2(lMd, lnDist, (lnDist*.5 + .5)*smoothing);
+                
+            }
+        }
+
+
+        // Return the smoothed and unsmoothed distance. I think they need capping at zero... but I'm not 
+        // positive. Although not used here, the standard minimum point distance is returned also.
+        return max(lMd, 0.0);    
+    }
+
+
+
+    float remap(vector p, float smoothing, float ew){    
+        float c = voronoi_smoothed(p, smoothing);
+        
+        if(c < ew){ 
+            c = abs(c - ew)/ew; // Normalize the domain to a range of zero to one.
+            c = smoothstep(0.03, 0.1, c);
+        }
+        else { // Over the threshold? Use the regular Voronoi cell value.
+            c = (c - ew)/(1. - ew); // Normalize the domain to a range of zero to one.
+            c = smoothstep(1.0, 1.0, c);
+        }
+        
+        return c;
+    }
+
+
+
+    shader voronoi_smooth(
+            point pos = P,
+            vector scale = vector(1.0),
+
+
+            float border_thickness = 0.025,
+            float smoothing = 0.35,
+
+
+            output color Color = color(0.0) )
+    {
+        Color = color(remap(pos * scale, smoothing, border_thickness));
+    }
+"
+}
+
+persp_camera
+{
+ name perspShape
+ matrix
+ 0.726574659 0 -0.687087536 0
+ -0.477910787 0.718467712 -0.505376458 0
+ 0.493650198 0.695560277 0.522020459 0
+ 13.8605337 19.5296936 14.6571035 1
+ near_clip 0.100000001
+ far_clip 10000
+ screen_window_min -1 -1
+ screen_window_max 1 1
+ shutter_start 0
+ shutter_end 0
+ shutter_type "box"
+ rolling_shutter "off"
+ rolling_shutter_duration 0
+ motion_start 0
+ motion_end 0
+ exposure 0
+ fov 54.4322243
+ uv_remap 0 0 0 1
+ declare maya_full_name constant STRING
+ maya_full_name "|persp|perspShape"
+}
+

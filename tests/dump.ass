@@ -1,0 +1,292 @@
+### exported: Mon Dec 31 00:04:01 2018
+### from:     Arnold 5.2.2.0 [30b8ba14] linux clang-5.0.0 oiio-2.0.1 osl-1.10.1 vdb-4.0.0 clm-1.0.3.513 rlm-12.4.2 2018/12/04 21:54:11
+### host app: MtoA 3.1.2 cd2a574d (master) Maya 2017
+### user: cactus
+### render_layer: defaultRenderLayer
+### scene: /home/cactus/shadersxyz_challenge_bread/arnold_procedural/tests/dumpshader.ma
+
+
+
+options
+{
+ AA_samples 3
+ AA_samples_max 8
+ outputs "RGBA RGBA defaultArnoldFilter@gaussian_filter defaultArnoldDriver@driver_exr.RGBA"
+ xres 960
+ yres 540
+ texture_per_file_stats on
+ texture_searchpath "/home/cactus/maya/projects/default/sourceimages"
+ texture_automip off
+ camera "perspShape"
+ frame 1
+ procedural_searchpath "/home/cactus/maya/projects/default/"
+ GI_diffuse_depth 1
+ GI_specular_depth 1
+ GI_transmission_depth 8
+ declare render_layer constant STRING
+ render_layer "defaultRenderLayer"
+}
+
+gaussian_filter
+{
+ name defaultArnoldFilter@gaussian_filter
+}
+
+driver_exr
+{
+ name defaultArnoldDriver@driver_exr.RGBA
+ filename "/home/cactus/maya/projects/default/images/dumpshader.exr"
+ color_space ""
+}
+
+persp_camera
+{
+ name perspShape
+ matrix
+ 0.707106769 2.77555756e-17 -0.707106769 0
+ -0.330569625 0.883995175 -0.330569625 0
+ 0.625078976 0.467496037 0.625078976 0
+ 8.24362564 6.16540051 8.24362564 1
+ near_clip 0.100000001
+ far_clip 10000
+ screen_window_min -1 -1
+ screen_window_max 1 1
+ shutter_start 0
+ shutter_end 0
+ shutter_type "box"
+ rolling_shutter "off"
+ rolling_shutter_duration 0
+ motion_start 0
+ motion_end 0
+ exposure 0
+ fov 54.4322243
+ uv_remap 0 0 0 1
+ declare maya_full_name constant STRING
+ maya_full_name "|persp|perspShape"
+}
+
+polymesh
+{
+ name pCubeShape1
+ visibility 255
+ sidedness 255
+ matrix
+ 1 0 0 0
+ 0 1 0 0
+ 0 0 1 0
+ 0 0 0 1
+ shader "dumpshader"
+ id 1171623953
+ nsides 304 1 b85UINT
+B!%<_l4$$$$p
+ vidxs 1216 1 b85UINT
+F&7ZiW$SrpR&7`Aw%MCbJ%MQM'%T5EJ%T>dj&;**<$PPYt&;*C&$DJNl%eJ'&%an2/%b&f%%eEqe$?KJL&CYHc$I`hQ&C]:l%mi,5%mww2$M/q5&G+iE%x'3k&He,P$U^$C&*)a;&JH^i$,\=q%WWQX%WeTN&L4*F%Y?h6%YO9R$,`^%&+fG@&2H5m&4.6;&41dK&Q3k@$\C(1$\SB^$_iH8&T`2e$57[i%alW'%apaN&V?7:$h?ik$hO`3$6l:,$oABt$mJr]$pn)($pwwB&[J@,$6lGW&[QGa$;r^g$v331$t=2&$tL(]$v.N+$)<Uk$uw>v$v3?r$%nV&%x:>X&0a6H%$G$0%$QMZ&d(+d$=c(-&d*rw$BbP%$hPjY%e<<)%eM1^$hDZ2$1cIU%)PE/%)a_1$'Nqr%0SN&$Z[r9%2))D%2.2+&lQrB$BiXK&lR5r$.8gj&4AXu%`2&[%`CLG&45TL$A.LX%5Lb]%5^?e$*nr<$^=2x$_gV=%8nnu%8qlu&u096$H$]v&u(&t$'Gk<%.mB9$pn4=$q*r3%.a1a$8VDr%:WSJ%:iHY$$,*`%+JOv$fX^o%'gxt%'p*Z'(Z*i$NgDO'(Z7:$PHjX%?tDS%<>w1%<Q/(%?k%`$3OQV%?bDo%?tQM$5/_f$aalq&)qEJ%mh]i%mpdO'13=q$SrA?'132S$US[U%E*Lw%C0r]%CCC,%DoW>$6lx,%Dm5R%E*ZA$1b<`$j;7)%t\31';Ua=';UmF'@`R%'P+I*'I9q@'\'fT']e48'a2oH'ib,r'ib9*'nlr^(8X;v(1fd7(DTYK(F='/(I_b?(R9ti(R:+v(WDeU(fd\Z(_s/p)'uh:))_)<)-,dL)?qXD)?qdW)E'I6)O<OQ)HJwg'W+Hj*&G+L*+Y_e*+QMO*&AV((1S?W&9BQw'b`=(&9G[l%Rr=[%R\(7%[C<o%[J75&<wP?'wFT*&=+Hg(D\jW%^XDh%]+_c%\q8E%^oY\(cGXq&Ar(/(is8^&Av%o%hv]m%hmKe%qZhM%q^@k&E\t,'=Nkv&E\N+'GRY3*.v25%x8*n&&[Lr&(\9N(5B?w&JL^&&JhLS&LK't)taX/)tWFd&1'>4(*tO7(%\C,(;mB[&OW7S&QUKG(I`SF(IRtp$[&:Q)[9jX(_VZ0&TWkV&U&Sw&VSN3)`?9L)`.\w$g%U^)oe-L'9]0u)8`K_&YcP0(;vV[(6f[-&(DIw)HKR7)H.Xd&`ZG](?7sr&`Xm9&bS:k)Ke%1)K[+e$WVJ>)R`KU)$8J(&i36w(NW;d&i;>6%-?lI%-0-Y$Zn7@%0`/=(PS7k&os7c&p;HF(c>]u%^\ZH%gBdk%g5<<%^ji:(DYI;(m9jr&sA)p)9&Ru)3e++%0T[f))^ep))Bwg'%;8`)<6,c'%5To''5+2)--mC),skS&-WMn'm0Nx'k3RS'-h3Z'[pbf'-qEY%Q*E6%Q%xo&*._($aew_'XZsH'4[:e'4eX2'I:&l'Qelg'>xvq'>xGL'QY-F'VcNn'GH0K'7v&5'>x_['D/+Q'GR)i'Ek*`'F)7[*-T:U)hbIO'L]4('NTpe'SORd'VrQ''_L3A'_LWV'dW<7)x.d+'f><^'h51.)\v9Z)`7L^'nl[_'nm)i'swcJ)s&)7(%iTL(%w3%(*tD)('PRN()8Du()8i/(.BrS*(<.o(55&\(7)A9(<'E[(?JCs(Bn5Q(Br'1(q%n&(M.Sq(I`=V(PR9K)3t_G)7>H<(WDMo(WDq`(\OVA)YKeA(^6V)(e.r,(j3f?(mVdW(koeN(kv10)chB4(v0.k(ramN)$SiG)R`Xs)V+5+)+F(c)+FLZ)0Q1;)mxd%)280l)4$Dd)9*PO)<MNg(=cEE(=jpr)?q?k)J(d+(,[t9(Nqs,)V.nx)RXj&(aZ/O(a`gd)YRHX)^X<g(wl^['XhkP)eO@X)ar@A):fOv):jYC)hrp()mkSR'=<ax'rI+n)togq)q>Zr)E'1M)E+_&)x>B8*(7n.'VrjY)MYZ+*/;:t*+hp5$$$'U
+ uvidxs 1216 1 b85UINT
+F%RVqu%YHIc%RW)+%\n-v%\kl2'kI*o'kIP='m16a(3L?^'m0[S(r[Li(\OVQ(v2-Q(v.T5(\MWb(DUe+%x7);&VJ$d%x5*Z%eGeX%eGYD(=eN'(BnAK(A0O`&Hej1&+cV0%`@B-%avDc%^S.N'wF;d'wGlX(56m4'nlBY'nmr1%^el'%qBk<&0l;N)E(j^)E*;B)[9`8&l`Qt&l`uv&X78N&>P'U%c`BA(v.^_(v0_6)5]EN))`M())`Xv&]OEe&vv3-'I7rA&p+:)&p)/%&YquE&]@6J&YmGE%muHU&/0$9%jOKq%jQ&R&/1l.&JLtx&/00V&/4F4(.9SP(A07O(%h;o()9tM()8Pq'pSYi'ib-''pULG)<E_J))]*Z(\Q=1(\PIb))[7Z(j1[Y)O<7Q)O>ZF'P<o3'\'rN'BEjZ)29w-)2:_B):e,%)<L7F):hBH)Wl10)E%VZ(tJwV(tJ_C)E%bH)Famc)C>cU)CAUX&nZih'/VQO&X1$9&i=;:&i;TQ&S&cc&9Gep&S*m,'P'?3'@^SE&p/CM&p.\-'@\`B',3/D'>x/O'?%F=)ar@;)s2.-)PwOB(R;h3(R9tb(<&:B't$&,(<)81(3NbW(Gw?L(0(r?(0*Lu(H$&<(_pmg(GwKh(H&=8%cuYh&&W)3%`9jK%eEra%eDg7%Wc1H%YJ<D%Wab]&+_@$&C[$+%g,5Z%g/3d&C\wl&];u_&C[<P&C_^1(j&U`)+DMZ(U[C\*4F+:)TLIC)AW(0'9omQ*N(J/*qqD4*w(d\&*)1L)Kl\k+Ece)+GZf^'=<`@$%`0j$doH?$j**))n)`U%J(%8'f,^1'h$wH%79Eo'ElLj*cw(w*TnTu)qM^5&OWh2$=gII$M%Ge(o<L($8P=m*YM;4*g\1p*JWgx$Bcjb$,ROB$%`wV+BP--+(q/B$^\Ek$US*p$UTZM$:5l6$:6_C$IWm`$\E>g$IUo0$dr:U$t?`N%&1,5%&18>$t@Sw%)UAv+.&u'+/c+/+.%iE+*V/R+*WS4*QL2/*QK&9*Cel(*2_Q1*Cgva(mb]K(Zf4D(A26V&G+vx&elW&'(dIM%awD?%b$*p(5&vV(KI_N(KEn,(%k:5(:?w9(M-07&MpNM%o[lI)ZvJ=)n(`u)n'=V'BI-;'GRMl'EiD$&>TUL&>TmG)5G^J)J3]K)J0G.)Q%q@)R`M()?oep'XXti'6I)-&Mx1t&gQc6&ejXF$8O1T$8NHY$/ve3$1]p5$/ueY(*Wm<(?J7d(?I,T)YT/-)tou%*+kb<%0Fbi$pr1X%0GV$%8u,p%8u9,'BHsO'\))$'boUc)V-pB)V0bE%)x9F$t?xc+;^%/+;`/q$tnDm$dtu_&qgQ*&k$^`'XX\\']ce['\'ZW%>*P)*THk9*_-sa*`j*+%?gPA)`%oJ)qKG+)qJx3(IbU;)$T,B)7AFD+,>F9*qt6T+,>R0+6S(3+6S@I%`;xS&&Xpx&At$s&`_g\&`cq3*MeB.*ObLT*7iBO*7jYt*Oc?k*Yx-x(mU5.(kqX:*7cEi*>[bL(mXoZ*<tb_).s,n(pxo[*bR(I'83d<&x`<V&bK3T*YxF;*uAeJ&EeK'&5w,I+3/Zh%s,;K+7m//+=GS2)J0SJ)9(^3+GI(O+P4<r$c7k$(M0tS(M1-g(:A^8$SmC8(NiQP$Zx0W$R/QF$*jPe'(h-A$?TPb$A'O\$1\@Z*/:DR$g*;O$mMXP$o4K[)n)uX'c+3W']eXK%H@lC%C5oZ%C53<%<E61%5Rvx%Dr1X+>WH2+/b7n&qk*T+1I4V'5)=G&u6*V)oewZ+Qqv_*+w7,)tq+Y%$KP_*VUP`**2mT)vUhn*;9?M)ePq\']st9'XZsg*`l4q$3EZO$3Fb($=YuU(WD)3$GpXd$pmXO%$JQ8)to8u'U5H'%4%o6%5Q;C)^^iD+K+1a&BE2h&[Y7A*xdWd'a2qF*lP<G*bQA@)g55C*2_,Q(cL?e(KIws+NM1o&Q?+<$M/rE$Xw@P''*1+*Z%N^(Y;gC(Zj%j$Bcs0$$$$>
+ vlist 306 1 b85VECTOR
+aqfIV`dQO48WMA_8e\68`dQO48X%WHaqfIV8GijZ8WMA_8e\688GijZ8X%WHaqrR:8GijZaeIG;8f9jR8GijYaeDleaqrR:`dQO4aeIG;8f9jR`dQO$aeDlf7k^7Y`dQO$8ZVb67q)SP`dQO$ansnJ7q)SN8GijYansnI7k^7Z8GijY8ZVb7asKur8GijY`r&vj7o[`J8GijYaG(MZ8gYRe8GijY`m/Bh8gYRe`dQO$`m/Ba7o[`J`dQO$aG(MYasKur`dQO$`r&veafldZ`dQO$8[ugLahg(q`dQO$a9=(]ahrDA`dQO$al:7RahrDA8GijYal:7Rahg(q8GijYa9=(]afldZ8GijY8[ugL8['OF`dQO$8\I\48]=;3`dQO$a913E8]RE4`dQO$alAT^8]RE48GijYalAT^8]=;28GijYa913E8['OF8GijY8\I\2au'[@`dQO$`frWEarf:u`dQO$agfeaau'[@8GijY`frWEarx?S8GijYa[vXIarf:u8GijYagfeaaiEeh8GijYaoD4G7qb<u8GijYaqD^naiEeh`dQO$aoD4G7qb<u`dQO$aqD^nag')W`dQO$8`K-XaXk*N`dQO$8[Aok7kUYn`dQO$8_0oEaXk*N8GijY8[Aokag')W8GijY8`K-X7kUYn8GijY8_0oEage.C8GijY8O:LM7mPvY8GijY8L4A$8\-)A8GijY8Oe6?8fwwI8GijY8Mw\98fwwI`dQO$8Mw\98\-)A`dQO$8Oe6?age.C`dQO$8O:LM7mPv\`dQO$8L4A%as%n*`dQO$8M=0Narh0C`dQO$8Yi$uasH<Y89_/X8[<;Jas%n*8GijY8M=0Narh0C8GijY8Yi$uap*8i`dQO$a,J>Mao&@_`dQO$8ZNxxaoX,4`dQO$ai2,PaoX,48GijYai2,Pap*8i8GijYa,J>Kao&@_8GijY8ZNxx8Q;%'`dQO$aCH778NWl)`dQO$8[Xcc8QvSm`dQO$anE4l8QvSm8GijYanE4l8Q;%&8GijYaCH758NWl)8GijY8[Xcc8[qY>89_/X8bDb>8g7Nv89_/X8[p'O8]Q`68GijYaanKC8d:d?8GijYa+S128g<&U8GijYa[n7x8cs^O8GijYai2Qh8^er(89_/Xap:Yd8ge6,89_/Xai2ED8d:d?`dQO$a+S128]Q`6`dQO$aanKC8cs^O`dQO$ai2Qh8g<&U`dQO$a[n7x8ilHk89_/X`\m3qau_io89_/X`fnb.asFG589_/Xai:%LahtLK`dQO$aah<2a[QYB`dQO$anB=r7pW=``dQO$ad^baaZxNV`dQO$aCJ-?aj.G.89_/Xap6e37rNe489_/Xar7:[ahtLK8GijYaah<2aZxNV8GijYaCJ-?7pW=\8GijYad^baa[QYB8GijYanB=ragd_p89_/X8b-(77lB-.89_/X8`k&t8[3'w`dQO$8a%Le8buQ0`dQO$8[+3>8fW@f`dQO$8ZGf%8buQ08GijY8[+3>8[3'w8GijY8a%Le8fW@f8GijY8ZGf%8^'@a8GijYaoH(w8g0'p8GijYag_0X8^'@a`dQO$aoH(w8g0'p`dQO$ag_0X8i4:;`dQO$`\tsK8i4:;8GijY`\tsKarx?S`dQO$a[vXH8cWaM89_/X8a$V18d28T8GijYa_'WB8dadX89_/XanPBA8d28U`dQO$a_'WB8iGqP89_/Xa]Xoaau.pc89_/Xa]e-da[CNh`dQO$acdI+a\gF)89_/XaqWE(a[CNh8GijYacdI)aY`(g89_/X8aWhr8c+TG`dQO$8_?IW8c+TG8GijY8_?IW8d5WR8GijYamL1@8d5WR`dQO$amL1@8hdbt`dQO$a[sj$8hdbt8GijYa[sj$atKb4`dQO$a\+('atKb48GijYa\+('a\*1d8GijYapdi9a\*1d`dQO$apdi9aXwiL`dQO$8_r\BaXwiL8GijY8_r\BaYj@28GijY8MUv*8cWaO8GijY8O)VI8hS3L8GijY8NcNh8i6B&89_/X8PHb88hS3L`dQO$8NcNh8cWaO`dQO$8O)VIaYj@2`dQO$8MUv,atXWM`dQO$8N'@_au;f'89_/X8OaT/atXWM8GijY8N'@_aoS$r`dQO$8NI&]aooIe`dQO$a_$Jxaom^P`dQO$amL,3apDch89_/XanP?eaom^P8GijYamL,3aooIe8GijYa_$JxaoS$r8GijY8NI&_ao4ij8GijY8^[g[ao`o,89_/X8`@t6ao4ij`dQO$8^[g[8OkBi`dQO$8MmIh8QdYI`dQO$aci)N8RT28`dQO$apgpV8SB-+89_/XaqZLB8RT288GijYapgpV8QdYH8GijYaci)N8OkBi8GijY8MmIh8NaZ&8GijY8`87;8OOTm89_/X8arCj8NaZ%`dQO$8`87;7lC@A`d+cv8`%kZ7l79N`VCZi8`>c/7l3G[7QEK\8`JrM8O>4/7QLD@8aR0O8O@E2`VA0=8aF-&8ODq'`d,'Y8a-Ef8[cUq7QAO<8b4]G8[at1`VDLf8b.U^8[`8G`d*S78aoG'7l3Ed8FV1W8`Jn77l6_V8G7JK8`?_q7lAt>8GP-\8`(Kh8ODGf8GP;<8a0(E8O@6'8G7M?8aG*f8O>4r8FV+48aR,.8[U@$8GOK98aspF8[^qo8G6le8b/@?8[cWE8FS8%8b4_+7r?Ak8GP*maqjuO7r?.P8G7HjaqvVT7r@(q8FV,Tar'3o8S3)h8FV-)aqJEV8S.pt8G7AZaqDmh8S&gn8GOfqaq9FF8^Wm$8FV.Xap*Rt8^T&98G73eap%2B8^LWH8GO5raoo+*7r@*l7QF[sar'5v7r?3(`VC;$aqv-c7r?I1`d+^oaqi[28S%s3`d+1xaq81Q8S.V=`VEjgaqDFp8S3+O7Q>]qaqJGF8^KmW`d*/Caomui8^SdD`VK1nap$d58^Wn+7Q.rHap*T58gY;o7Q4vnahk<78gT3.`VI%<ahcnh8gIJX`d)DkahV238i;?H7Qf`:a]8j88i5RD`V7q2a]2Kl8i)A3`d-Oxa](2+8i_l<7QxbN`\nrF8iYuv`V2a_`]1='8iMPC`d0T,`]jwv8g+TY8FU*I8[Sr^8g'dQ8G6v>8[Jt-8fu&68GNu%8[8aH8ho`l8GQD:8OW:08i$ss8G7HL8Oq@68i)e&8FSE^8P(Yp8iO7c8GR_Z`]bcr8iZUd8G8<I`].3K8i_hX8FV_;`\nrtas*cA`d)D[ah]UCas5Fc`VI=TahkIgas:MF7Q44(ahrq;atw>X7Qe1>a]E(1atqQl`V8Osa]>@gateA-`d-Q^a]310au@qd`d0T\`fXBGauMB/`V2Y'`fhv,auS8B7R$-n`foVras0fv8GNwR8ZYnias8R$8G6w(8Zl18as<Ba8FU*_8Zu1Yau/4N8FRs68OALvau*@K8G7E88O5+gatu&L8GQL=8Noi0auS4^8FV^T`foW9auMvs8G8<H`fimhauBY18GR_n`fZbSas.:g8GOT/ahV-Uas6Mk8G6odahiN(as:Nv8FS<Mahrtvap:lQ8FUt)an@94ap7dj8G7%Wan;7Jap1P=8GN_fan1+\aiuT/8FV&8ap&^OaiqmL8G73Aaov<%aijcG8GO8Vaok0%ap0V3`d)8Wan0:cap7J'`VQ8ean:q[ap:lg7PstNan@9Waij'%`d*4Baoj$naiqWR`VIpeaoumRaiuU87Q31@ap&_fas-M.`d)PG8Z\*=as7Q<`VK2)8ZlY=as<Ba7Q0j>8Zu1WaoVx27PxNO8_uh8aoTAi`VOK(8_j:'aoOH4`d)*u8_RidagVnF7Q?rO8ae0AagU,q`VE.c8aXtDagS(;`d*['8a?w-aoMNj8GNma8_VwVaoSls8G6iX8_kY<aoW$28FT3%8_ukLagS5t8GONG8aBI0agU0h8G76D8aYlFagVm-8FUk.8ae-?8i;?>8FSWba]8is8i6H38G7P@a],B(8i,%&8GQWCa\fjW8gMg18GNp]ahP6E8gUMP8G6^6ahbAj8gY=T8FS/hahk@28i)dj7Qbh&8P(YE8i$%i`V9?:8Ov*D8hlpL`d-788OhgU8fqk=`d)EN8[;-j8g&f[`VKI68[KL(8g+TU7Q/W68[SrVatr3``d-</8O.7;au)FG`V8Uu8O:C7au/3p7QdjZ8OAKIatw?U8FRRoa]E*WatrYE8G74Za]9-lathd%8GPuca\tuxa\Y\67Q?ePaqG@,a\UD%`VEL]aqA?=a\M&I`d+8Maq5)@a\YZ^8FV)oaqG>?a\U]t8G7BBaqAf>a\Mmg8GOjjaq6>DaYP>x8FV+W8a7UPaYQ[N8G7Jq8a,O)aYTI<8GP2Z8`jFEaYP>N7QIMN8a7YfaYQeG`VB0T8a+R&aYTd8`d+m,8`geh8dWki7Ps++an@<28dTEt`VQKvan:vg8dMJO`d)4can0F@8dWk[8FUl>an@;o8dTbe8G7%0an;9/8dNK\8GNb$an1*s8cMih8FT3G8`YMG8cJ\w8G6i`8`O;/8cD=[8GNml8`:Y/8cMhh7PxS68`YJ58cK/Z`VOJ]8`Mu>8cF/;`d)&)8`6Zf
+ uvlist 379 1 b85VECTOR2
+8DZk98EXAN8DV5w8EZ,(8DV/&8Cied8DZo*8ChU&8DZj'8FVn;8DV2:8FXm68Cuu:8E_T%8Cuu:8Clp18DV<^8AS4=8DZv28AS1^8Cuu:8F_-+8C=_.8EZ,(8C=eb8Cie_8Cuu:8AS4N8DV/q8?6]98DZoj8?7oB8D]F[8Cf'J8D]QU8AS*p8C=]T8FXlV8C9/J8Ci'88C9--8EXJ98C=hS8AS4=8Cuu:8?3S-8DV-v8=9W@8DZhr8=;Al8D]HM8?:K]8C9,V8FVXP8C90=8AS1<8C=f88?6]78Cuu:8=40=8DV928<,E38DZkY8<.AW8C9/Y8?7<f8C=_h8=9X-8Cuu:8<&/L8C9-H8=;(T8C=\k8<,E)8C9,@8<.J^8A`9b8EB+g8A[\H8E@ZB8A[^U8CD+18A`@)8CDb[8A`6x8FMid8A[[E8FKc/8A[_A8A(eJ8A`B[8A(g18BCO=8CGlg8BCO=8EGSX8BCO=8FT*A8A[^U8>kx:8A`@&8>k=V8BCO=8A(fs8BxZT8CDbo8Bx]Y8EB,O8BxhU8FMiW8A[\38=+lq8A`9=8=*4g8BCO=8>h308Bxk]8A(g18C(D[8E@:-8C(G28CCTw8C(E`8FKmR8BCO=8=$al8Bx\08>k=H8C(P48A(e_8A`7T8<,Dx8BCO=8<&/M8Bxe%8=*4g8C(Hf8>lNo8C++X8A(af8C*r58CA/&8Bxa<8<,DB8C(EB8=+t`8C*vJ8>o)18C(D(8<.C:8B9Lh7tHKf8@6>17tHxt8?f927hO\P8AYt;7i7Q38BcUX8'MJv8@V@18'TI/8=X@p7tXp_8=H>[7h51Y8?L'q7XP@-8@pB[7^q5n8C0eN7t'j,8BL*J7hE4C8BucG8-x&&8@dm%8-xNV8=mTU8'dYO8C^7p8'9e98;&\>7uR\M8;,K<7j9UB8=>8[7U:Yn8?LV-7DSK,8AAR`7YEss8C?u37s_iu8B[d<7gLhR8BbJr82_^l8@UHX82\t:8>$NN8.$Lp8CqW`8-w@F8;6Ep8(>up8Cm6C8'*AP88t2[7vD/:89;op7l;Df8;5FH7ZB;F8=:nZ77UVZ8?SVN7<;Gg8AO3G7Vx)%8CD:j7sZ(*8B_`S7g9<18B8(C86xin8@5,w87$Z58=mXK82Va'8C]&k82hRj8;D6n8.&]`8D+N?8-va[893&>8(gYZ8Cq]O8''4B871nu7v;1487irk7kn&089nV$7bX??8;/,<7I_`k8=:w;6v+DU8?V2g76>k<8AR`>7Um5?8?et189g%S8AYm&89]sA8=XYH86tGD8C/:Z873Qm8;8^(82CH*8Cl%&82oN<89Cu>8.(U_8D0&18-van87K\48(cip86hCA7uuLN87Jan7jv':89FmZ7\cN>8;(%_7AA0K8=I8C89m2/8BL)J89f@L8?Lm58:x_(8@q9'8:UCX8;*i_86RV+8C>Gh87Ar[897L>823&f8CpLD82q%O87oV68.(^U87-e=8(N-l86_k*7un%C87B_%7jb6-8999u7ZT]F8;1]289[u18=?gR8;3O18B[dT89oxh8AC&h8:q\s8?Mf38;TMd89-D%864MI8CBd=87D_*87Uxd825OK87QgD8.'p,87$h\8(Od+895`[7Z$Q08;%M/7>AP]89EK389JT[8;;,98;$^=8=<Z<8;gP^8B__o89rH68AP?r8;'u%8?TvB8;_fV87D>R86:I^878/Y82?2'87Hcn8.(&a88*v@89P5]89wED8:P\B8;4td8;YNQ8=<T-8;r%k8AT,I8;+1$8?WG@8;cY687&X786KX`87/0S82>Xw89Ps\8:rEv87`e789Yi%8;-pO8;dSW86rNj86LCm89CA:8;(sB87XbL89\<389?g'8;+tf8;+A68;hTK8+Qm57Vk:28+2i07hVT47ve*-7hq*'7wxo/7Y>098/uGq7jZws8/cQ[7[0+S8*G`47tiWM7u%k.7tY_b7kr$T7iXsd7qh]U7__%q8+XV77=$877wv`@7G_`780,%n7ucC;8/p0s7K?4S83VS`7l\gB82F2O7cF/V8)GfL8'u@=7sOc28'e/m7fvaH7tY2V7e6u17hfVo7n6207Z3d*8+XBi7/*&X7wR$)7@5/;8/aR^8(O\a84.N,7vTk*80,a*7E>Q$83@X77]Q>K858bs7l:Ha8(m)f8.,jg7rjY_8.+lN7`q:R8'^1a7ZL;I7t8Po7bHaH7gqC@7lil97X?TK7wMx>7<Y:h8+XQb6v+DU8/Epc8./&V83h<n8(x@E85pfg7vKlw80/=^7Ad\j83\de7[V@585VE77k<cF8)GVq82_)s7sSA=82e=17]M\N8.+Cr7LD8p8'JL'7W_=L7sq,[7lTO(7WQhg7a[qp7g[cC8/\wH82Kew83FHm8.0sV85W$T8(tP^868S%7v(^S83c._7ZmG985_K97k-2?8*FS%87'e<7u*Zk87,x*7a.;O82h'b7@D/g8.*^;7D(9a8';Du7V6=@7sjuZ8/x`-86Zsx83_Eo82;D\853*Q8.1'L85sm\8(^YU86B937v'Bs7vf=.89k4N8+/-=89qA+7g-0n87,2f7Lj]482ppa7.v<v8.**J7@K1e8'8%S8/k$289`/,83sVK86<kB85L]$82=mB85OlP8.07Q86(Ln8(`Dv7kr^Y89b-=7wuXs8;'mx8+NdF8;7^-7ZdA,87;ob7DuBu82w^>6ulTJ8.**b83CH/89NcV8/X0x8;(m985^B686BgS85iO/82GU385YR)8.0D&7e7(189jOH7qaUP8:YRT8+U)t8;k_[7wqu%8;X\_7Wwps87J$&7AC+i83$>B84w_H89TDY824Sb8:Tk>8/dIw8;]]M86&,386Sq=85s0;82Fxh7n*=F8:uko7bITU89shu8+U7O8;uQ57wMaX8;bYb7VfbI87LtI85@;l89^bP83,L18:vTq8/v?Q8;gYM86/hu86T`97l^>G8;*dI7a\=$89vLc7wICb8;gD08+U.r8<%CZ85IF(89`[G83HOR8;+j%8/x^>8;lD[7lHb>8;.q/83Nu%8;/bD8DFvb8'Lul8DBBp8'Lmq8DBC87t@/*8DFwY7t@wj8DFw98-a+98DBC-8-aCB8DBBh7fRZA8DFv67fP*i8E*5)8'LWL8E*5)7t:6m8E*5)8-d0Y8DFv%81oeB8DBBa81o*h8DBAD7/17e8DFrA7,_s[8E*5)7f:7E8E_O98'Lun8E_Nt7t@wR8E*5)81u0c8E_Nt8-a+A8DFr@85](78DBAD85ZxZ8E*5)6v+FG8E_C17fP(O8Ed/(8'Lo)8Ed/@7t@4w8E*5)85dc[8E_Mq81odl8Ed/-8-aAH8DFt)88Qqt8DBAt88N1R8E_G)7,^cE8Ed*/7fWAa8E_G(85])$8Ed-,81o,>8Ed)j7/HK?8Ed)i85ZX(8Dp238?-4l8DkR<8?-5>8DkS$8<bgQ8Dp208<bE/8Dp2?8AU7p8DkRq8ATl18DkTB8:Z9v8Dp2+8:YOV8EPL.8?--:8EPL.8<`re8EPL.8AVTZ8Dp2N8Ciq/8DkTD8Ci3q8DkUd88n;Y8Dp3688km78EPL.8:Vf,8F3_>8?-4l8F3`A8<bDu8EPL.8ClW-8F3`48AU8'8Dp2k8EOYJ8DkU`8ENH98EPL.88d078F3bB8:YOC8F8>78?-5>8F8>T8<bj.8EPL.8ESLg8F3ah8CiqB8F8>O8ATiY8F3dR88km-8F8?:8:Z>H8F3dH8EOYT8F8?+8Ci/[8F8@)88nR)8F8@'8EN=h
+ smoothing on
+ subdiv_type "catclark"
+ subdiv_iterations 5
+ subdiv_adaptive_error 0
+ subdiv_adaptive_metric "auto"
+ subdiv_adaptive_space "raster"
+ subdiv_frustum_ignore off
+ subdiv_uv_smoothing "pin_corners"
+ subdiv_smooth_derivs off
+ step_size 0
+ volume_padding 0
+ declare maya_full_name constant STRING
+ maya_full_name "|pCube1|pCubeShape1"
+}
+
+dump {
+    name dumpshader
+    emission aiOslShader1
+    bbox_min -6.28 -0.034 -5.2707
+    bbox_max 6.279 1.0784 4.0926
+    gridsize 0.05
+}
+
+
+
+osl
+{
+ name aiOslShader1
+ code "float smin2(float a, float b, float r)
+{
+    float f = max(0., 1. - abs(b - a)/r);
+    return min(a, b) - r*.25*f*f;
+}
+
+
+
+vector hash( vector x )
+{
+    vector a = vector( dot(x,vector(127.1, 311.7, 74.7)),
+                    dot(x,vector(269.5, 183.3, 246.1)),
+                    dot(x,vector(113.5, 271.9, 124.6)) );
+    
+    vector result = sin(a)*43758.5453123;
+    return result - floor(result);
+}
+
+
+
+float voronoi_smoothed(vector x, float smoothing){
+
+
+    vector p = floor(x);
+    vector f = x - floor(x);
+    vector h = step(0.5, f) - 2.0;
+    p += h; f -= h;
+    
+    // Voronoi cell ID containing the minimum offset point distance. The nearest
+    // edge will be one of the cells edges.
+    vector minCellID = vector(0); // Redundant initialization, but I've done it anyway.
+
+
+    // First pass: Regular Voronoi.
+    vector mo;
+    
+    // Minimum distance, \"smooth\" distance to the nearest cell edge, regular
+    // distance to the nearest cell edge, and a line distance place holder.
+    float md = 8.0, lMd = 8.0, lnDist, d;
+    
+    for( int k=0; k<=3; k++ )
+    for( int j=0; j<=3; j++ )
+    for( int i=0; i<=3; i++ )
+    {
+        vector b = vector(float(i), float(j), float(k));
+        vector r = vector( b ) - f + hash( p + b );
+        
+        // Determine the distance metric to the point.
+        d = dot(r, r);
+        if( d<md ){ // Perform updates, if applicable.    
+            md = d;  // Update the minimum distance.
+            // Keep note of the position of the nearest cell point - with respect
+            // to \"p,\" of course. It will be used in the second pass.
+            mo = r; 
+            //cellID = h + p; // For cell coloring.
+
+
+            // zeno: how should mincellid be used??
+            minCellID = b; // Record the minimum distance cell ID.
+        }
+    }
+    
+    // Second pass: Point to nearest cell-edge distance.
+    //
+    // With the ID of the cell containing the closest point, do a sweep of all the
+    // surrounding cell edges to determine the closest one. You do that by applying
+    // a standard distance to a line formula.
+    for( int k=0; k<=3; k++ )
+    for( int j=0; j<=3; j++ )
+    for( int i=0; i<=3; i++ )
+    {
+        vector b = vector(float(i), float(j), float(k));
+    
+        // Determine the offset hexagonal point in relation to the minimum cell offset.
+        //vec2 r = hexPt(pH + gridpoint + minCellID) - x - mo; // Note the \"-mo\" to save some operations. 
+        vector r = vector( b ) - f + hash( p + b ) - mo;
+        
+        // Skip the same cell.
+        if(dot(r, r)>.00001){
+            
+            // This tiny line is the crux of the whole example, believe it or not. Basically, it's
+            // a bit of simple trigonometry to determine the distance from the cell point to the
+            // cell border line. See IQ's article (link above) for a visual representation.            
+            lnDist = dot(mo + r*.5, normalize(r));
+            
+            // Abje's addition. Border distance using a smooth minimum. Insightful, and simple.
+            //
+            // On a side note, IQ reminded me that the order in which the polynomial-based smooth
+            // minimum is applied effects the result. However, the exponentional-based smooth
+            // minimum is associative and commutative, so is more correct. In this particular case, 
+            // the effects appear to be negligible, so I'm sticking with the cheaper polynomial-based
+            // smooth minimum, but it's something you should keep in mind. By the way, feel free to 
+            // uncomment the exponential one and try it out to see if you notice a difference.
+            //
+            // Polynomial-based smooth minimum. The last factor controls the roundness of the 
+            // edge joins. Zero gives you sharp joins, and something like \".25\" will produce a
+            // more rounded look. Tomkh noticed that a variable smoothing factor - based on the
+            // line distance - produces continuous isolines.
+            lMd = smin2(lMd, lnDist, (lnDist*.5 + .5)*smoothing);
+            
+        }
+    }
+
+
+    // Return the smoothed and unsmoothed distance. I think they need capping at zero... but I'm not 
+    // positive. Although not used here, the standard minimum point distance is returned also.
+    return max(lMd, 0.0);    
+}
+
+
+
+float remap(vector p, float smoothing, float ew){    
+    float c = voronoi_smoothed(p, smoothing);
+    
+    if(c < ew){ 
+        c = abs(c - ew)/ew; // Normalize the domain to a range of zero to one.
+        c = smoothstep(0.03, 0.1, c);
+    }
+    else { // Over the threshold? Use the regular Voronoi cell value.
+        c = (c - ew)/(1. - ew); // Normalize the domain to a range of zero to one.
+        c = smoothstep(1.0, 1.0, c);
+    }
+    
+    return c;
+}
+
+
+
+shader voronoi_smooth(
+    point pos = P,
+    vector scale = vector(1.0),
+
+
+    float border_thickness = 0.025,
+    float smoothing = 0.35,
+
+
+    output color Color = color(0.0) )
+{
+    Color = color(remap(pos * scale, smoothing, border_thickness));
+}
+"
+ param_scale aiRange8
+ param_border_thickness 0.00499999989
+ param_smoothing 0.340000004
+}
+
+range
+{
+ name aiRange8
+ input aiClamp3
+ output_min 1.00999999
+ output_max 2.26999998
+}
+
+clamp
+{
+ name aiClamp3
+ input aiRange7
+}
+
+range
+{
+ name aiRange7
+ input aiNoise2
+ input_min 0.479999989
+ output_min -0.100000001
+ output_max 1.39999998
+}
+
+noise
+{
+ name aiNoise2
+ scale 0.5 0.5 0.5
+}
