@@ -1,12 +1,7 @@
-// idea: write a pointcloud data dump
-// try and tweak a shadingglobal to sample a volume with rays in a gridlike fashion
-// could pre-create the grids, then just sample one grid point during each shader_evaluate, if it runs out of elements to loop over it runs out and thats it
-
 // this will have to be executed on a single thread!?
 
-
-// next steps
-// connect the actual osl shader
+// hacky pass-through shader which evaluates the input shading network in a gridlike fashion.
+// this allows me to write out e.g noise fields into a point cloud.
 
 #include <ai.h>
 #include <iostream>
@@ -15,42 +10,44 @@
  
 AI_SHADER_NODE_EXPORT_METHODS(DumpMethods);
  
-enum DumpParams 
-{ 
+enum DumpParams  { 
     p_emission,
     p_bbox_min,
     p_bbox_max,
-    p_gridsize
+    p_gridsize,
+    p_outfile
 };
 
 struct Grid {
     std::vector<AtVector> gridpos;
     std::vector<AtRGB> gridvalues;
     float gridsize;
-
     int counter;
+    std::string outfile;
 };
  
-node_parameters
-{
+
+node_parameters {
    AiParameterRGB("emission", 0.7f, 0.7f, 0.7f);
    AiParameterVec("bbox_min", 0.0f, 0.0f, 0.0f);
    AiParameterVec("bbox_max", 1.0f, 1.0f, 1.0f);
    AiParameterFlt("gridsize", 0.05f);
+   AiParameterStr("outfile", "/home/cactus/shadersxyz_challenge_bread/objs/bread_low_values.txt");
 }
- 
-node_initialize
-{
+
+
+node_initialize {
     AiNodeSetLocalData(node, new Grid());
 }
- 
-node_update
-{
+
+
+node_update {
     Grid *grid = (Grid*)AiNodeGetLocalData(node);
 
     grid->gridpos.clear();
     grid->gridvalues.clear();
     grid->counter = 0;
+    grid->outfile = AiNodeGetStr(node, "outfile");
 
     AtVector bbox_min = AiNodeGetVec(node, "bbox_min");
     AtVector bbox_max = AiNodeGetVec(node, "bbox_max");
@@ -76,14 +73,14 @@ node_update
     }
     }
 }
- 
-node_finish
-{
+
+
+node_finish {
     Grid *grid = (Grid*)AiNodeGetLocalData(node);
 
     // write out the data
     std::ofstream myfile;
-    myfile.open ("/home/cactus/shadersxyz_challenge_bread/objs/bread_low_values.txt");
+    myfile.open (grid->outfile);
 
     for (int i = 0; i < grid->gridpos.size(); i++){
         myfile << grid->gridpos[i].x << " "
@@ -96,10 +93,9 @@ node_finish
 
     myfile.close();
 }
- 
 
-shader_evaluate
-{
+
+shader_evaluate {
     Grid *grid = (Grid*)AiNodeGetLocalData(node);
 
     if (grid->counter < grid->gridpos.size()){
@@ -107,9 +103,7 @@ shader_evaluate
         AtShaderGlobals *sg2 = AiShaderGlobals();
         sg2->P = grid->gridpos[grid->counter];
         sg2->Po = grid->gridpos[grid->counter];
-
         grid->gridvalues.push_back(AtRGB(AiShaderEvalParamFuncFlt(sg2, node, p_emission)));
-        //std::cout << AiShaderEvalParamFuncFlt(sg2, node, p_emission) << std::endl;
 
         ++grid->counter;
     }
@@ -119,8 +113,7 @@ shader_evaluate
  
 node_loader
 {
-   if (i > 0)
-      return false;
+   if (i > 0) return false;
    node->methods     = DumpMethods;
    node->output_type = AI_TYPE_RGB;
    node->name        = "dump";

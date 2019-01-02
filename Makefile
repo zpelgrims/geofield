@@ -14,13 +14,13 @@ LDFLAGS=-L${ARNOLD_PATH}/bin -lai
 
 .PHONY=all clean
 
-all: dump spherefill
+all: dump pointcloud
 
-spherefill: Makefile src/proc_randompc.cpp ${HEADERS}
-	${CXX} ${CXXFLAGS} src/proc_randompc.cpp -o bin/random_flake.so ${LDFLAGS}
+pointcloud: Makefile src/pointcloud.cpp ${HEADERS}
+	${CXX} ${CXXFLAGS} src/pointcloud.cpp -o bin/pointcloud.so ${LDFLAGS}
 
 dump: Makefile src/dump.cpp ${HEADERS}
 	${CXX} ${CXXFLAGS} src/dump.cpp -o bin/dump.so ${LDFLAGS}
 
 clean:
-	rm -f dump spherefill
+	rm -f dump pointcloud
